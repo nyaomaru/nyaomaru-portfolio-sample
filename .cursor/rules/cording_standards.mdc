@@ -2,43 +2,43 @@
 alwaysApply: true
 ---
 
-# cording_standards.mdc
+# coding_standards.mdc
 
-## コーディング規約
+## Coding Standards
 
-- FSDの依存ルール・ディレクトリ構成を厳守
-- variantやpropsで柔軟にカスタマイズできる設計を推奨
-- コード分割・パフォーマンス最適化も考慮
-- Remixのルート/ローダ/アクション/エラーバウンダリを適切に設計
+- Follow FSD dependency rules and directory structure.
+- Design components to be flexible using `variant` and `props`.
+- Consider code splitting and performance optimization.
+- Properly design Remix routes, loaders, actions, and error boundaries.
 
-## テスト・品質
+## Testing & Quality
 
-- 必要に応じてユニットテスト・コンポーネントテストを実施
-- コードレビュー・PR時のLint/Formatチェックを推奨
+- Implement unit and component tests where necessary.
+- Run lint/format checks during code reviews and pull requests.
 
-## Lint/Formatルール
+## Lint/Format Rules
 
-- ESLint, Prettierを導入し、CIで強制
-- import順は「外部→内部→相対パス」
-- セミコロン必須、シングルクォート推奨
+- Use ESLint and Prettier, enforced via CI.
+- Import order: **external → internal → relative paths**.
+- Require semicolons; prefer single quotes.
 
-## 型定義の方針
+## Type Definition Guidelines
 
-- TypeScriptのstrictモードを有効化
-- anyの使用禁止（例外時は理由をコメント）
+- Enable TypeScript `strict` mode.
+- Avoid using `any` (if unavoidable, add a comment explaining the reason).
 
-## コメント・ドキュメント
+## Comments & Documentation
 
-- 関数・コンポーネントにはJSDocコメントを推奨
-- 複雑なロジックには適宜コメントを追加
-- TODO, FIXMEコメントは必ず理由を明記
+- Recommend JSDoc comments for functions and components.
+- Add comments for complex logic where needed.
+- Always include reasons in `TODO` or `FIXME` comments.
 
-## ファイル命名・配置
+## File Naming & Organization
 
-- FSDのレイヤーごとにディレクトリを分ける
-- ファイル名・ディレクトリ名は用途・役割が直感的に分かるものにする
+- Separate directories according to FSD layers.
+- Use intuitive file and directory names that clearly describe their purpose.
 
-## PR・運用
+## Pull Requests & Workflow
 
-- 仕様変更や追加があった際は該当ファイルのみ修正
-- 複数人で作業する場合はコンフリクトを避けるため、粒度の細かいPRを推奨
+- When specifications change or features are added, modify only the relevant files.
+- When working in teams, create small, focused PRs to avoid merge conflicts.

@@ -1,83 +1,84 @@
+---
+alwaysApply: true
+---
+
 # portfolio_plan.mdc
 
-## ページ・ルーティング
+## Pages & Routing
 
-### ルート構成
+### Route Structure
 
-- `/` … Introduction（トップ）
-- `/profile` … プロフィール（カルーセル）
-- `/articles` … 記事一覧
+- `/` … Introduction (Home)
+- `/profile` … Profile (Carousel)
+- `/articles` … Articles list
 
-### ルートファイル例
+### Route File Examples
 
-- `app/routes/_index.tsx` … トップ
-- `app/routes/profile.tsx` … プロフィール
-- `app/routes/articles.tsx` … 記事
+- `app/routes/_index.tsx` … Home
+- `app/routes/profile.tsx` … Profile
+- `app/routes/articles.tsx` … Articles
 
-## 各ページの仕様
+## Page Specifications
 
-### Introduction（トップページ）
+### Introduction (Home Page)
 
-- 中央に大きく "nyaomaru is?" をfade-in表示
-- その下に「ターミナル風UI」を配置
+- Display large text `"nyaomaru is?"` with fade-in animation in the center
+- Place a "terminal-style UI" below the title
 
-### Profile（プロフィールページ）
+### Profile Page
 
-- カルーセルUIで自己紹介を順番に表示
-- 各スライドはCardコンポーネントで中央表示
-- Next/Previousボタンでスライド切替
-- 外部リンクは「View More」ボタンで明示
-- 内容例：Divider OSS、Favorite Languages、Weaknesses、Server-side Experience、Creative Outlet、Work Style、Learning Focus
+- Carousel UI showing self-introduction slides in sequence
+- Each slide displayed in a centered `Card` component
+- Next/Previous buttons to navigate slides
+- External links shown with a "View More" button
+- Example contents: Divider OSS, Favorite Languages, Weaknesses, Server-side Experience, Creative Outlet, Work Style, Learning Focus
 
-### Articles（記事ページ）
+### Articles Page
 
-- カード型レイアウトで記事一覧を表示
-- 各カードにはタイトル・サマリー・Zenn等への外部リンク
-- 記事例：Technical debt basics, Technical debt structure, Technical debt code, FSD overview, AI era npm publish
+- Card-based layout displaying article list
+- Each card shows title, summary, and external link (e.g., Zenn)
+- Example articles: Technical debt basics, Technical debt structure, Technical debt code, FSD overview, AI era npm publish
 
-## 共通UI・ウィジェット
+## Shared UI & Widgets
 
 ### Header
 
-- ロゴ（ライト/ダークで画像切替 or アニメGIF）
-- ナビゲーション（Profile, Articles）
-- GitHubリンク、メールリンク、ダーク/ライト切替
-- モバイル時はハンバーガーメニュー
+- Logo (switch between light/dark images or animated GIF)
+- Navigation links (Profile, Articles)
+- GitHub link, email link, dark/light theme toggle
+- Hamburger menu on mobile
 
 ### Terminal
 
-- ターミナルUIは以下のコマンドを受け付け、即座に定型文を返す（AI連携も可）
-  - who / where / how-long / language / favorite
-  - その他/不正なコマンド → "Coming soon... Please try a valid command!"
-- ターミナルヘッダーに3色ボタン（赤：リセット、黄：ロゴ切替、緑：アスキーアート）
-- 入力・出力はtypewriter風アニメーション、履歴は自動スクロール
+- Terminal UI accepts the following commands and returns predefined responses (AI integration optional):
+  - `who` / `where` / `how-long` / `language` / `favorite`
+  - Other/invalid commands → `"Coming soon... Please try a valid command!"`
+- Terminal header has 3 colored buttons:
+  - Red: Reset
+  - Yellow: Toggle logo
+  - Green: Show ASCII art
+- Typewriter-style animation for input/output, auto-scroll for history
 
-### 共通
+### Shared Components
 
-- `Card`, `Button`, `Dialog`, `Typewriter` などは `shared/ui/` に配置し再利用
-- `Card` … 角丸・影付き・背景色対応
-- `Button` … variantで色・サイズ切替、profile用variantも用意
-- `Typewriter` … 文字を1文字ずつ表示するアニメーション
+- Place reusable components in `shared/ui/` (`Card`, `Button`, `Dialog`, `Typewriter`, etc.)
+- `Card`: Rounded corners, shadow, background color support
+- `Button`: Variants for color/size, profile-specific variant
+- `Typewriter`: Displays text one character at a time
 
-## データ・API
+## Data & API
 
-- プロフィール情報は `public/profile.json` にJSONで管理
-- ターミナルのコマンド応答はこのJSONを参照し、LangChain等でAI応答も可能
-- `/api/ask` エンドポイントでコマンドを受け、profile.jsonから適切な情報を返す
+- Store profile information in `public/profile.json`
+- Terminal command responses reference this JSON; can also be enhanced with LangChain AI
+- `/api/ask` endpoint accepts commands and returns relevant info from `profile.json`
 
-## アクセシビリティ・レスポンシブ対応
+## Accessibility & Responsiveness
 
-- すべてのUIはキーボード操作可能
-- モバイル・PC両対応のレスポンシブデザイン
+- All UI must be keyboard accessible
+- Responsive design for both mobile and desktop
 
-## その他
+## Other Notes
 
-- Remixのルート/ローダ/アクション/エラーバウンダリを適切に設計
-- FSDの依存ルール・ディレクトリ構成を厳守
-- コード分割・パフォーマンス最適化も考慮
-
----
-description:
-globs:
-alwaysApply: true
----
+- Properly design Remix routes, loaders, actions, and error boundaries
+- Follow FSD dependency rules and directory structure
+- Consider code splitting and performance optimization

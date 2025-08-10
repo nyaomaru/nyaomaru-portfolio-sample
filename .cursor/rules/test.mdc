@@ -2,15 +2,15 @@
 alwaysApply: true
 ---
 
-# テスト
+# Testing Guidelines
 
-model や lib など、logic に関する処理を記述した場合には、tests を追加してください。
+When adding logic-related code (e.g., in `model` or `lib`), always add corresponding tests.
 
-vitest を用いて記述してください。
+Use **Vitest** for writing tests.
 
-## テスト設計
+## Test Structure
 
-`tests/` 配下に、各 slice から始まる同じ構造で test を記述してください。
+Place tests under the `tests/` directory, mirroring the structure of each slice.
 
 ```sh
 tests/
@@ -23,35 +23,33 @@ tests/
 │             └── terminal-model.test.ts
 └── ...
 ```
+Follow the BDD (Behavior-Driven Development) style, writing tests that describe each behavior.
 
-BDD (Behavior-Driven Development) の形式に従い、各振る舞いに関するテストを記述するようにしてください。
+## Test Policy
+- Always write tests for logic-related implementations
+- For features and widgets layers, create unit tests for main components
+- Test files should use the *.test.tsx extension and be placed in the same directory as the code under test
+- Target coverage: 80%+
 
-## テスト方針
-
-- ロジックに関する実装にはテストを必ず記述する
-- features, widgets層の主要コンポーネントはユニットテストを作成する
-- テストファイルは `*.test.tsx` とし、同階層に配置
-- カバレッジ目標: 80%以上
-
-## テスト実装
-
-AAA (Arrange Act Assertion) パターンを用いて、それぞれの役割が明確になるように、それぞれ改行を用いてテストを記述してください。
+## Test Implementation
+Use the AAA (Arrange–Act–Assert) pattern and separate each section with line breaks for clarity.
 
 ```ts
 describe('email-divider', () => {
   it('should divide a standard email address into local and domain parts', () => {
+    // Arrange
     const email = 'alice@example.com';
 
+    // Act
     const result = emailDivider(email);
 
+    // Assert
     expect(result).toEqual(['alice', 'example.com']);
   });
-})
+});
 ```
-
-## テスト実装後
-
-テストを実装した後に、テストケースを評価するため、以下のコマンドを実行してください。
+## After Implementing Tests
+After adding tests, run the following command to execute and evaluate test cases:
 
 ```sh
 pnpm test
