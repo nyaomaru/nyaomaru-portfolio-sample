@@ -1,0 +1,84 @@
+---
+alwaysApply: true
+---
+
+# portfolio_plan.mdc
+
+## Pages & Routing
+
+### Route Structure
+
+- `/` … Introduction (Home)
+- `/profile` … Profile (Carousel)
+- `/articles` … Articles list
+
+### Route File Examples
+
+- `app/routes/_index.tsx` … Home
+- `app/routes/profile.tsx` … Profile
+- `app/routes/articles.tsx` … Articles
+
+## Page Specifications
+
+### Introduction (Home Page)
+
+- Display large text `"nyaomaru is?"` with fade-in animation in the center
+- Place a "terminal-style UI" below the title
+
+### Profile Page
+
+- Carousel UI showing self-introduction slides in sequence
+- Each slide displayed in a centered `Card` component
+- Next/Previous buttons to navigate slides
+- External links shown with a "View More" button
+- Example contents: Divider OSS, Favorite Languages, Weaknesses, Server-side Experience, Creative Outlet, Work Style, Learning Focus
+
+### Articles Page
+
+- Card-based layout displaying article list
+- Each card shows title, summary, and external link (e.g., Zenn)
+- Example articles: Technical debt basics, Technical debt structure, Technical debt code, FSD overview, AI era npm publish
+
+## Shared UI & Widgets
+
+### Header
+
+- Logo (switch between light/dark images or animated GIF)
+- Navigation links (Profile, Articles)
+- GitHub link, email link, dark/light theme toggle
+- Hamburger menu on mobile
+
+### Terminal
+
+- Terminal UI accepts the following commands and returns predefined responses (AI integration optional):
+  - `who` / `where` / `how-long` / `language` / `favorite`
+  - Other/invalid commands → `"Coming soon... Please try a valid command!"`
+- Terminal header has 3 colored buttons:
+  - Red: Reset
+  - Yellow: Toggle logo
+  - Green: Show ASCII art
+- Typewriter-style animation for input/output, auto-scroll for history
+
+### Shared Components
+
+- Place reusable components in `shared/ui/` (`Card`, `Button`, `Dialog`, `Typewriter`, etc.)
+- `Card`: Rounded corners, shadow, background color support
+- `Button`: Variants for color/size, profile-specific variant
+- `Typewriter`: Displays text one character at a time
+
+## Data & API
+
+- Store profile information in `public/profile.json`
+- Terminal command responses reference this JSON; can also be enhanced with LangChain AI
+- `/api/ask` endpoint accepts commands and returns relevant info from `profile.json`
+
+## Accessibility & Responsiveness
+
+- All UI must be keyboard accessible
+- Responsive design for both mobile and desktop
+
+## Other Notes
+
+- Properly design Remix routes, loaders, actions, and error boundaries
+- Follow FSD dependency rules and directory structure
+- Consider code splitting and performance optimization

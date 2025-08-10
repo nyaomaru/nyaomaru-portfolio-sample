@@ -1,0 +1,122 @@
+---
+alwaysApply: true
+---
+
+# architecture.mdc
+
+## Architecture & Design
+
+This project strictly applies **Feature-Sliced Design (FSD)** to maximize scalability, maintainability, and reproducibility.
+Each layer has a clearly defined responsibility and allowed dependency rules.
+
+## Layer Structure & Responsibilities
+
+### 1. Shared Layer (`shared/`)
+- UI components, utilities, constants, types, and settings reusable across all layers.
+- Examples: `Button`, `Card`, `Typewriter`, common hooks, API clients.
+- **Allowed dependencies:** None (innermost layer).
+
+### 2. Entities Layer (`entities/`)
+- Business entities such as `Project`, `Experience`, `Skill`.
+- Entity-specific types, UI, loaders, and actions.
+- **Allowed dependencies:** `shared`.
+
+### 3. Features Layer (`features/`)
+- User actions and business logic (e.g., terminal command processing).
+- Feature-specific UI, hooks, loaders, and actions.
+- **Allowed dependencies:** `entities`, `shared`.
+
+### 4. Widgets Layer (`widgets/`)
+- Composite UI combining multiple features, entities, and shared components (e.g., `Header`, `Terminal`).
+- Layouts and large UI blocks.
+- **Allowed dependencies:** `features`, `entities`, `shared`.
+
+### 5. Pages Layer (`pages/`)
+- Base implementation for each page (screen).
+- For each page, create:
+  - `ui/` for UI components composing the page.
+  - `model/` for page-specific state, logic, and data fetching.
+- Examples: `pages/top/`, `pages/profile/`, `pages/articles/`.
+- **Allowed dependencies:** `widgets`, `features`, `entities`, `shared`.
+- **Forbidden:** Dependencies between different `pages`.
+- **Note:** Keep pages separate from Remix routes to clarify screen responsibilities.
+
+### 6. App Layer (`app/routes/`)
+- Defines Remix routes according to file-based routing.
+- Each route should call the corresponding `pages/` implementation and define route-specific loaders, actions, error boundaries, and `meta` functions.
+- **Allowed dependencies:** `pages`, `widgets`, `features`, `entities`, `shared`.
+- **Forbidden:** Dependencies between different routes.
+- Examples: `app/routes/_index.tsx`, `app/routes/profile.tsx`, `app/routes/articles.tsx`.
+
+## Dependency Rules
+
+- Dependencies must always point from the outer layer **inwards**.
+- Reverse dependencies are forbidden (e.g., `shared` → `features` is not allowed).
+- Dependency diagram:
+
+```sh
+[app/routes] → [pages] → [widgets] → [features] → [entities] → [shared]
+```
+
+- Examples:
+  - `pages` can depend on `widgets`, `features`, `entities`, `shared`.
+  - `widgets` can depend on `features`, `entities`, `shared`.
+  - `features` can depend on `entities`, `shared`.
+  - `entities` can depend only on `shared`.
+  - `shared` cannot depend on any other layer.
+  - `app/routes` can depend on any layer.
+  - No dependencies between `pages` and no dependencies between `routes`.
+
+## Example Directory Structure
+
+```
+portfolio/
+├── app/
+│ ├── routes/
+│ │ ├── _index.tsx
+│ │ ├── profile.tsx
+│ │ └── articles.tsx
+│ ├── root.tsx
+│ └── ...
+├── pages/
+│ ├── top/
+│ │ ├── index.ts
+│ │ ├── ui/
+│ │ └── model/
+│ ├── profile/
+│ │ ├── index.ts
+│ │ ├── ui/
+│ │ └── model/
+│ └── articles/
+│ ├── index.ts
+│ ├── ui/
+│ └── model/
+├── shared/
+│ ├── ui/
+│ ├── lib/
+│ └── api/
+├── features/
+│ └── terminal/
+├── widgets/
+│ ├── header/
+│ └── terminal/
+├── public/
+│ └── profile.json
+└── ...
+```
+
+## Role of the Pages Layer
+
+- Purpose: Handle the basic UI, logic, and state management for each screen (e.g., Top, Profile, Articles).
+- Separate `ui/` (UI composition) and `model/` (logic/state/data fetching) inside each page directory.
+- This separation improves reusability and maintainability.
+- Examples:
+  - `pages/top/` → Top screen UI & logic.
+  - `pages/profile/` → Profile screen UI & logic.
+  - `pages/articles/` → Article list screen UI & logic.
+
+## UI Design & Styling
+
+- Based on `shadcn/ui` components and philosophy, styled with Tailwind CSS.
+- Supports dark/light mode.
+- Responsive design for multiple screen sizes.

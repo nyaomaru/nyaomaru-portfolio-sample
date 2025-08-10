@@ -1,0 +1,44 @@
+---
+alwaysApply: true
+---
+
+# coding_standards.mdc
+
+## Coding Standards
+
+- Follow FSD dependency rules and directory structure.
+- Design components to be flexible using `variant` and `props`.
+- Consider code splitting and performance optimization.
+- Properly design Remix routes, loaders, actions, and error boundaries.
+
+## Testing & Quality
+
+- Implement unit and component tests where necessary.
+- Run lint/format checks during code reviews and pull requests.
+
+## Lint/Format Rules
+
+- Use ESLint and Prettier, enforced via CI.
+- Import order: **external → internal → relative paths**.
+- Require semicolons; prefer single quotes.
+
+## Type Definition Guidelines
+
+- Enable TypeScript `strict` mode.
+- Avoid using `any` (if unavoidable, add a comment explaining the reason).
+
+## Comments & Documentation
+
+- Recommend JSDoc comments for functions and components.
+- Add comments for complex logic where needed.
+- Always include reasons in `TODO` or `FIXME` comments.
+
+## File Naming & Organization
+
+- Separate directories according to FSD layers.
+- Use intuitive file and directory names that clearly describe their purpose.
+
+## Pull Requests & Workflow
+
+- When specifications change or features are added, modify only the relevant files.
+- When working in teams, create small, focused PRs to avoid merge conflicts.

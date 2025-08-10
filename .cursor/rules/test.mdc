@@ -1,0 +1,56 @@
+---
+alwaysApply: true
+---
+
+# Testing Guidelines
+
+When adding logic-related code (e.g., in `model` or `lib`), always add corresponding tests.
+
+Use **Vitest** for writing tests.
+
+## Test Structure
+
+Place tests under the `tests/` directory, mirroring the structure of each slice.
+
+```sh
+tests/
+├── shared/
+│   └── lib/
+│        └── shared-lib-test.test.ts
+├── features/
+│   └── terminal/
+│        └── model/
+│             └── terminal-model.test.ts
+└── ...
+```
+Follow the BDD (Behavior-Driven Development) style, writing tests that describe each behavior.
+
+## Test Policy
+- Always write tests for logic-related implementations
+- For features and widgets layers, create unit tests for main components
+- Test files should use the *.test.tsx extension and be placed in the same directory as the code under test
+- Target coverage: 80%+
+
+## Test Implementation
+Use the AAA (Arrange–Act–Assert) pattern and separate each section with line breaks for clarity.
+
+```ts
+describe('email-divider', () => {
+  it('should divide a standard email address into local and domain parts', () => {
+    // Arrange
+    const email = 'alice@example.com';
+
+    // Act
+    const result = emailDivider(email);
+
+    // Assert
+    expect(result).toEqual(['alice', 'example.com']);
+  });
+});
+```
+## After Implementing Tests
+After adding tests, run the following command to execute and evaluate test cases:
+
+```sh
+pnpm test
+```

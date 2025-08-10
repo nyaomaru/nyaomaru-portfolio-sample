@@ -1,0 +1,37 @@
+---
+alwaysApply: true
+---
+
+# components_guidelines.mdc
+
+## Component Design Guidelines
+
+- Place all generic/reusable UI components (e.g., `Card`, `Button`, `Dialog`, `Typewriter`) in `shared/ui/` so they can be reused across all layers.
+- Design components to be flexible via `variant` props or other configuration props.
+- Examples:
+  - **Card** → supports rounded corners, shadow, and background color variations.
+  - **Button** → supports size/color variants, plus a dedicated `profile` variant.
+  - **Typewriter** → animates text by displaying one character at a time.
+
+## Naming Conventions & File Placement
+
+- Organize components into directories according to FSD layers.
+- Strictly follow each layer's responsibilities and allowed dependency directions.
+- Choose names that clearly convey the component’s purpose and role.
+- **`.tsx` file names:** PascalCase (e.g., `ProfileCard.tsx`)
+- **Prop names:** camelCase (e.g., `userName`, `onClick`)
+- **Hooks:** camelCase with `use` prefix (e.g., `useTerminal.ts`)
+- **Other `.ts` files:** kebab-case (e.g., `api-client.ts`)
+
+## Accessibility & Styling
+
+- Base all UI components on `shadcn/ui` and customize as needed.
+- Follow `shadcn/ui` accessibility guidelines.
+- Place all custom CSS in `shared/ui`.
+- Use Tailwind CSS for styling; keep utility classes minimal and purposeful.
+- Ensure responsiveness, keyboard accessibility, and adequate color contrast.
+
+## Reusability
+
+- Keep components as generic as possible by accepting props instead of hardcoding for specific use cases.
+- Use `variant` and `slot` patterns when appropriate to improve flexibility.
