@@ -1,0 +1,58 @@
+---
+alwaysApply: true
+---
+
+# テスト
+
+model や lib など、logic に関する処理を記述した場合には、tests を追加してください。
+
+vitest を用いて記述してください。
+
+## テスト設計
+
+`tests/` 配下に、各 slice から始まる同じ構造で test を記述してください。
+
+```sh
+tests/
+├── shared/
+│   └── lib/
+│        └── shared-lib-test.test.ts
+├── features/
+│   └── terminal/
+│        └── model/
+│             └── terminal-model.test.ts
+└── ...
+```
+
+BDD (Behavior-Driven Development) の形式に従い、各振る舞いに関するテストを記述するようにしてください。
+
+## テスト方針
+
+- ロジックに関する実装にはテストを必ず記述する
+- features, widgets層の主要コンポーネントはユニットテストを作成する
+- テストファイルは `*.test.tsx` とし、同階層に配置
+- カバレッジ目標: 80%以上
+
+## テスト実装
+
+AAA (Arrange Act Assertion) パターンを用いて、それぞれの役割が明確になるように、それぞれ改行を用いてテストを記述してください。
+
+```ts
+describe('email-divider', () => {
+  it('should divide a standard email address into local and domain parts', () => {
+    const email = 'alice@example.com';
+
+    const result = emailDivider(email);
+
+    expect(result).toEqual(['alice', 'example.com']);
+  });
+})
+```
+
+## テスト実装後
+
+テストを実装した後に、テストケースを評価するため、以下のコマンドを実行してください。
+
+```sh
+pnpm test
+```

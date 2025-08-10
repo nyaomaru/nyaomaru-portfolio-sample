@@ -1,0 +1,83 @@
+# portfolio_plan.mdc
+
+## ページ・ルーティング
+
+### ルート構成
+
+- `/` … Introduction（トップ）
+- `/profile` … プロフィール（カルーセル）
+- `/articles` … 記事一覧
+
+### ルートファイル例
+
+- `app/routes/_index.tsx` … トップ
+- `app/routes/profile.tsx` … プロフィール
+- `app/routes/articles.tsx` … 記事
+
+## 各ページの仕様
+
+### Introduction（トップページ）
+
+- 中央に大きく "nyaomaru is?" をfade-in表示
+- その下に「ターミナル風UI」を配置
+
+### Profile（プロフィールページ）
+
+- カルーセルUIで自己紹介を順番に表示
+- 各スライドはCardコンポーネントで中央表示
+- Next/Previousボタンでスライド切替
+- 外部リンクは「View More」ボタンで明示
+- 内容例：Divider OSS、Favorite Languages、Weaknesses、Server-side Experience、Creative Outlet、Work Style、Learning Focus
+
+### Articles（記事ページ）
+
+- カード型レイアウトで記事一覧を表示
+- 各カードにはタイトル・サマリー・Zenn等への外部リンク
+- 記事例：Technical debt basics, Technical debt structure, Technical debt code, FSD overview, AI era npm publish
+
+## 共通UI・ウィジェット
+
+### Header
+
+- ロゴ（ライト/ダークで画像切替 or アニメGIF）
+- ナビゲーション（Profile, Articles）
+- GitHubリンク、メールリンク、ダーク/ライト切替
+- モバイル時はハンバーガーメニュー
+
+### Terminal
+
+- ターミナルUIは以下のコマンドを受け付け、即座に定型文を返す（AI連携も可）
+  - who / where / how-long / language / favorite
+  - その他/不正なコマンド → "Coming soon... Please try a valid command!"
+- ターミナルヘッダーに3色ボタン（赤：リセット、黄：ロゴ切替、緑：アスキーアート）
+- 入力・出力はtypewriter風アニメーション、履歴は自動スクロール
+
+### 共通
+
+- `Card`, `Button`, `Dialog`, `Typewriter` などは `shared/ui/` に配置し再利用
+- `Card` … 角丸・影付き・背景色対応
+- `Button` … variantで色・サイズ切替、profile用variantも用意
+- `Typewriter` … 文字を1文字ずつ表示するアニメーション
+
+## データ・API
+
+- プロフィール情報は `public/profile.json` にJSONで管理
+- ターミナルのコマンド応答はこのJSONを参照し、LangChain等でAI応答も可能
+- `/api/ask` エンドポイントでコマンドを受け、profile.jsonから適切な情報を返す
+
+## アクセシビリティ・レスポンシブ対応
+
+- すべてのUIはキーボード操作可能
+- モバイル・PC両対応のレスポンシブデザイン
+
+## その他
+
+- Remixのルート/ローダ/アクション/エラーバウンダリを適切に設計
+- FSDの依存ルール・ディレクトリ構成を厳守
+- コード分割・パフォーマンス最適化も考慮
+
+---
+description:
+globs:
+alwaysApply: true
+---
