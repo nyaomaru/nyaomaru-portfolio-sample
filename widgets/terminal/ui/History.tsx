@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { Typewriter } from '@/shared/ui';
-import type { TerminalHistory } from '../model/types';
+import type { TerminalHistory } from '../model';
 
 type HistoryProps = {
   /** Array of terminal history entries to display */

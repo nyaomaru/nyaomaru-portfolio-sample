@@ -3,7 +3,7 @@ import path from 'path';
 import { Document } from 'langchain/document';
 import { MemoryVectorStore } from 'langchain/vectorstores/memory';
 import { RunnableSequence } from '@langchain/core/runnables';
-import { getEmbeddings, getChatModel } from '@/shared/lib/openapi';
+import { getEmbeddings, getChatModel } from '@/shared/lib';
 import { profileQAPrompt } from './profile-qa';
 
 /**
