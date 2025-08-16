@@ -1,5 +1,5 @@
 import { Card } from '@/shared/ui';
-import { articles } from '../model/articles';
+import { articles } from '../model';
 
 const Articles = () => {
   return (

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button, Card } from '@/shared/ui';
-import { profileSections } from '../model/profileSections';
+import { profileSections } from '../model';
 
 const Profile = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

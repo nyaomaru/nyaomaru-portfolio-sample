@@ -1,14 +1,14 @@
 import { Mail, Copy } from 'lucide-react';
 import { toast } from 'sonner';
-import { Button } from '@/shared/ui';
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/shared/ui/Dialog';
+} from '@/shared/ui';
 import { CONTACT } from '@/shared/constants';
 
 const MailTo = () => {

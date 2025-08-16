@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { Link } from '@remix-run/react';
-import { navigationItems } from '../model/navigation';
+import { navigationItems } from '../model';
 
 /**
  * Props for the NavigationLinks component
